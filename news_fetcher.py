@@ -35,7 +35,12 @@ def fetch_ai_news():
 - 【重点要求】：对于每一条重要新闻，务必在末尾提供一个可点击的原始新闻网页链接（URL），格式为：`直达：[查看原文](网页URL)`。
 """
 
-    user_prompt = "开始干活，给我今天的全息AI早报！请务必进行全网搜索，获取过去24-48小时内的最新干货。"
+    user_prompt = """开始干活！为了避免大模型通用搜索带来的信息遗漏，请你**必须使用 web_search 工具，分别针对以下 3 个核心关键词组进行深度搜索**，然后再汇总写报告：
+1. "Claude Sonnet 模型解封 解绑 最新动态" 或者 "Anthropic 模型 限制 解除"
+2. "多智能体 Multi-Agent Coze Dify 最新应用案例"
+3. "AI 人工智能 生命科学 医药研发 突破 2026"
+
+搜索完毕后，请综合所有信息，严格按照上述 4 个模块撰写今天的全息AI早报。千万不要遗漏 Claude 相关的重磅动态！"""
 
     print("Starting intelligence gathering with GLM-4...")
     response = client.chat.completions.create(
