@@ -55,7 +55,9 @@ def fetch_ai_news():
     content = response.choices[0].message.content
     
     # Save to file
-    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    # 强制使用北京时间 (UTC+8)，防止云端服务器 (UTC时间) 导致日期差一天
+    tz_utc_8 = datetime.timezone(datetime.timedelta(hours=8))
+    today = datetime.datetime.now(tz_utc_8).strftime("%Y-%m-%d")
     filename = f"{today}-全息AI内参.md"
     
     with open(filename, "w", encoding="utf-8") as f:
